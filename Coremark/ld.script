@@ -1,0 +1,20 @@
+OUTPUT_FORMAT("elf32-littleriscv");
+OUTPUT_ARCH("riscv")
+
+ENTRY(_start);
+MEMORY {
+    ROM(rxai) : ORIGIN = 0x0100, LENGTH = 24k
+    RAM(wa) : ORIGIN = 0x6100, LENGTH = 7k
+}
+
+SECTIONS
+{
+    .text : { *(.text) } > ROM
+    .rodata : { *(.rodata) } > RAM
+    .data : { *(.data) } > RAM
+    . = ALIGN(4);
+    __bss_start = .;
+    .bss : {*(.bss)} > RAM
+    __bss_end = . ;
+    .comment : { *(.comment) } > RAM
+}
