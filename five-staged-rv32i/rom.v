@@ -3,7 +3,7 @@ module rom(input clk,
              output reg [31:0] r_data
             );
   //TODO: initial文でデータを読み込む
-  reg [31:0] mem[0:'h1a40]; //0x100+0x6000を32bitで割った値
+  reg [31:0] mem[0:'h1a40];
   initial
  $readmemh("/path/to/coremark/code.hex", mem);
   wire [31:0] addr;
